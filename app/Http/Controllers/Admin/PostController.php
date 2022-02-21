@@ -82,6 +82,10 @@ class PostController extends Controller
             $newPost->image = $path_image;
         }
 
+        if (isset($data["tags"])) {
+            $newPost->tags()->sync($data["tags"]);
+        }
+
         $newPost->save();
         //redirect al post
         return redirect()->route("posts.show", $newPost->id);
